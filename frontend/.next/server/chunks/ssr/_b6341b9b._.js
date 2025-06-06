@@ -10,6 +10,7 @@ __turbopack_context__.s({
 });
 var __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/react/jsx-dev-runtime [external] (react/jsx-dev-runtime, cjs)");
 var __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/react [external] (react, cjs)");
+"use client";
 ;
 ;
 const Register = ()=>{
@@ -18,6 +19,7 @@ const Register = ()=>{
         email: "",
         password: "",
         confirmPassword: "",
+        phone: "",
         experienceLevel: "Fresher",
         city: "Delhi",
         workStatus: "Looking for Job"
@@ -28,9 +30,36 @@ const Register = ()=>{
             [e.target.name]: e.target.value
         });
     };
-    const handleSubmit = (e)=>{
+    const handleSubmit = async (e)=>{
         e.preventDefault();
-        console.log(form);
+        try {
+            const response = await fetch("/api/register", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(form)
+            });
+            const result = await response.json();
+            if (response.ok) {
+                alert(result.message);
+                setForm({
+                    name: "",
+                    email: "",
+                    password: "",
+                    confirmPassword: "",
+                    phone: "",
+                    experienceLevel: "Fresher",
+                    city: "Delhi",
+                    workStatus: "Looking for Job"
+                });
+            } else {
+                alert("Something went wrong");
+            }
+        } catch (error) {
+            console.error("Error submitting form:", error);
+            alert("Error sending data to server");
+        }
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
         className: "grid grid-cols-1 lg:grid-cols-2 min-h-screen bg-gradient-to-r from-blue-100 via-blue-200 to-blue-300 px-4 md:px-16 py-6",
@@ -48,7 +77,7 @@ const Register = ()=>{
                                     children: "Unlock career"
                                 }, void 0, false, {
                                     fileName: "[project]/pages/register.js",
-                                    lineNumber: 31,
+                                    lineNumber: 61,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("h1", {
@@ -56,7 +85,7 @@ const Register = ()=>{
                                     children: "Your job search ends here"
                                 }, void 0, false, {
                                     fileName: "[project]/pages/register.js",
-                                    lineNumber: 32,
+                                    lineNumber: 62,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("p", {
@@ -64,13 +93,13 @@ const Register = ()=>{
                                     children: "Discover 20 lakh+ career opportunities"
                                 }, void 0, false, {
                                     fileName: "[project]/pages/register.js",
-                                    lineNumber: 35,
+                                    lineNumber: 65,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/pages/register.js",
-                            lineNumber: 30,
+                            lineNumber: 60,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -81,31 +110,31 @@ const Register = ()=>{
                             }
                         }, void 0, false, {
                             fileName: "[project]/pages/register.js",
-                            lineNumber: 41,
+                            lineNumber: 69,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/pages/register.js",
-                    lineNumber: 28,
+                    lineNumber: 59,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/pages/register.js",
-                lineNumber: 27,
+                lineNumber: 58,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
-                className: "flex items-center justify-center ",
+                className: "flex items-center justify-center",
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
-                    className: "bg-white  p-6 md:p-10 rounded-2xl shadow-md w-full max-w-xl",
+                    className: "bg-white p-6 md:p-10 rounded-2xl shadow-md w-full max-w-xl",
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("h2", {
                             className: "text-3xl md:text-4xl font-extrabold text-left text-blue-900 mb-6",
                             children: "Create your Job Account"
                         }, void 0, false, {
                             fileName: "[project]/pages/register.js",
-                            lineNumber: 56,
+                            lineNumber: 82,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("form", {
@@ -119,7 +148,7 @@ const Register = ()=>{
                                             children: "Name"
                                         }, void 0, false, {
                                             fileName: "[project]/pages/register.js",
-                                            lineNumber: 61,
+                                            lineNumber: 87,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("input", {
@@ -132,13 +161,13 @@ const Register = ()=>{
                                             required: true
                                         }, void 0, false, {
                                             fileName: "[project]/pages/register.js",
-                                            lineNumber: 62,
+                                            lineNumber: 88,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/pages/register.js",
-                                    lineNumber: 60,
+                                    lineNumber: 86,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -148,7 +177,7 @@ const Register = ()=>{
                                             children: "Email"
                                         }, void 0, false, {
                                             fileName: "[project]/pages/register.js",
-                                            lineNumber: 74,
+                                            lineNumber: 100,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("input", {
@@ -161,13 +190,13 @@ const Register = ()=>{
                                             required: true
                                         }, void 0, false, {
                                             fileName: "[project]/pages/register.js",
-                                            lineNumber: 75,
+                                            lineNumber: 101,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/pages/register.js",
-                                    lineNumber: 73,
+                                    lineNumber: 99,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -180,7 +209,7 @@ const Register = ()=>{
                                                     children: "Password"
                                                 }, void 0, false, {
                                                     fileName: "[project]/pages/register.js",
-                                                    lineNumber: 88,
+                                                    lineNumber: 114,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("input", {
@@ -192,13 +221,13 @@ const Register = ()=>{
                                                     required: true
                                                 }, void 0, false, {
                                                     fileName: "[project]/pages/register.js",
-                                                    lineNumber: 89,
+                                                    lineNumber: 115,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/pages/register.js",
-                                            lineNumber: 87,
+                                            lineNumber: 113,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -208,7 +237,7 @@ const Register = ()=>{
                                                     children: "Confirm Password"
                                                 }, void 0, false, {
                                                     fileName: "[project]/pages/register.js",
-                                                    lineNumber: 99,
+                                                    lineNumber: 125,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("input", {
@@ -220,19 +249,19 @@ const Register = ()=>{
                                                     required: true
                                                 }, void 0, false, {
                                                     fileName: "[project]/pages/register.js",
-                                                    lineNumber: 102,
+                                                    lineNumber: 128,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/pages/register.js",
-                                            lineNumber: 98,
+                                            lineNumber: 124,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/pages/register.js",
-                                    lineNumber: 86,
+                                    lineNumber: 112,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -245,7 +274,7 @@ const Register = ()=>{
                                                     children: "Experience"
                                                 }, void 0, false, {
                                                     fileName: "[project]/pages/register.js",
-                                                    lineNumber: 115,
+                                                    lineNumber: 141,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("select", {
@@ -259,7 +288,7 @@ const Register = ()=>{
                                                             children: "Fresher"
                                                         }, void 0, false, {
                                                             fileName: "[project]/pages/register.js",
-                                                            lineNumber: 122,
+                                                            lineNumber: 148,
                                                             columnNumber: 19
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("option", {
@@ -267,53 +296,53 @@ const Register = ()=>{
                                                             children: "Experienced"
                                                         }, void 0, false, {
                                                             fileName: "[project]/pages/register.js",
-                                                            lineNumber: 123,
+                                                            lineNumber: 149,
                                                             columnNumber: 19
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/pages/register.js",
-                                                    lineNumber: 116,
+                                                    lineNumber: 142,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/pages/register.js",
-                                            lineNumber: 114,
+                                            lineNumber: 140,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("label", {
                                                     className: "block text-sm font-medium",
-                                                    children: "Number"
+                                                    children: "Phone Number"
                                                 }, void 0, false, {
                                                     fileName: "[project]/pages/register.js",
-                                                    lineNumber: 127,
-                                                    columnNumber: 18
+                                                    lineNumber: 153,
+                                                    columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("input", {
-                                                    type: "Number",
-                                                    name: "password",
-                                                    value: form.password,
+                                                    type: "text",
+                                                    name: "phone",
+                                                    value: form.phone,
                                                     onChange: handleChange,
                                                     className: "w-full p-3 border rounded-lg mt-1 focus:outline-none focus:ring-2 focus:ring-blue-400",
                                                     required: true
                                                 }, void 0, false, {
                                                     fileName: "[project]/pages/register.js",
-                                                    lineNumber: 128,
+                                                    lineNumber: 154,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/pages/register.js",
-                                            lineNumber: 126,
+                                            lineNumber: 152,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/pages/register.js",
-                                    lineNumber: 113,
+                                    lineNumber: 139,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -323,7 +352,7 @@ const Register = ()=>{
                                             children: "Work Status"
                                         }, void 0, false, {
                                             fileName: "[project]/pages/register.js",
-                                            lineNumber: 140,
+                                            lineNumber: 166,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("select", {
@@ -337,7 +366,7 @@ const Register = ()=>{
                                                     children: "Looking for Job"
                                                 }, void 0, false, {
                                                     fileName: "[project]/pages/register.js",
-                                                    lineNumber: 147,
+                                                    lineNumber: 173,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("option", {
@@ -345,7 +374,7 @@ const Register = ()=>{
                                                     children: "Open to Offers"
                                                 }, void 0, false, {
                                                     fileName: "[project]/pages/register.js",
-                                                    lineNumber: 148,
+                                                    lineNumber: 174,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("option", {
@@ -353,7 +382,7 @@ const Register = ()=>{
                                                     children: "Not Looking"
                                                 }, void 0, false, {
                                                     fileName: "[project]/pages/register.js",
-                                                    lineNumber: 149,
+                                                    lineNumber: 175,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("option", {
@@ -361,19 +390,19 @@ const Register = ()=>{
                                                     children: "Currently Employed"
                                                 }, void 0, false, {
                                                     fileName: "[project]/pages/register.js",
-                                                    lineNumber: 150,
+                                                    lineNumber: 176,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/pages/register.js",
-                                            lineNumber: 141,
+                                            lineNumber: 167,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/pages/register.js",
-                                    lineNumber: 139,
+                                    lineNumber: 165,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("button", {
@@ -382,13 +411,13 @@ const Register = ()=>{
                                     children: "Register"
                                 }, void 0, false, {
                                     fileName: "[project]/pages/register.js",
-                                    lineNumber: 154,
+                                    lineNumber: 180,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/pages/register.js",
-                            lineNumber: 59,
+                            lineNumber: 85,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("p", {
@@ -399,33 +428,33 @@ const Register = ()=>{
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("a", {
                                     href: "/login",
                                     className: "text-blue-600 hover:underline",
-                                    children: "Login Hear"
+                                    children: "Login Here"
                                 }, void 0, false, {
                                     fileName: "[project]/pages/register.js",
-                                    lineNumber: 163,
+                                    lineNumber: 189,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/pages/register.js",
-                            lineNumber: 161,
-                            columnNumber: 12
+                            lineNumber: 187,
+                            columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/pages/register.js",
-                    lineNumber: 55,
+                    lineNumber: 81,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/pages/register.js",
-                lineNumber: 54,
+                lineNumber: 80,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/pages/register.js",
-        lineNumber: 25,
+        lineNumber: 56,
         columnNumber: 5
     }, this);
 };

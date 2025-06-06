@@ -1,5 +1,5 @@
+"use client";
 import React, { useState } from "react";
-
 
 const Register = () => {
   const [form, setForm] = useState({
@@ -7,6 +7,7 @@ const Register = () => {
     email: "",
     password: "",
     confirmPassword: "",
+    phone: "",
     experienceLevel: "Fresher",
     city: "Delhi",
     workStatus: "Looking for Job",
@@ -16,9 +17,39 @@ const Register = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(form);
+
+    try {
+     const response = await fetch("/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        alert(result.message);
+         setForm({
+        name: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+        phone: "",
+        experienceLevel: "Fresher",
+        city: "Delhi",
+        workStatus: "Looking for Job",
+      });
+      } else {
+        alert("Something went wrong");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("Error sending data to server");
+    }
   };
 
   return (
@@ -26,7 +57,6 @@ const Register = () => {
       {/* Left Section */}
       <div className="p-5 flex flex-col justify-center">
         <div className="flex flex-col-reverse md:flex-row items-center justify-center mt-10 gap-6">
-          {/* Text */}
           <div className="max-w-md text-center md:text-left">
             <p className="text-lg font-bold text-blue-900">Unlock career</p>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-blue-900 leading-tight">
@@ -35,9 +65,7 @@ const Register = () => {
             <p className="text-xl font-light text-slate-700 mt-5">
               Discover 20 lakh+ career opportunities
             </p>
-            
           </div>
-          {/* Image */}
           <div
             className="w-full h-[264px] bg-no-repeat bg-contain bg-center"
             style={{
@@ -46,13 +74,11 @@ const Register = () => {
             }}
           ></div>
         </div>
-
-        
       </div>
 
       {/* Right Section */}
-      <div className="flex items-center justify-center ">
-        <div className="bg-white  p-6 md:p-10 rounded-2xl shadow-md w-full max-w-xl">
+      <div className="flex items-center justify-center">
+        <div className="bg-white p-6 md:p-10 rounded-2xl shadow-md w-full max-w-xl">
           <h2 className="text-3xl md:text-4xl font-extrabold text-left text-blue-900 mb-6">
             Create your Job Account
           </h2>
@@ -124,11 +150,11 @@ const Register = () => {
                 </select>
               </div>
               <div>
-                 <label className="block text-sm font-medium">Number</label>
+                <label className="block text-sm font-medium">Phone Number</label>
                 <input
-                  type="Number"
-                  name="password"
-                  value={form.password}
+                  type="text"
+                  name="phone"
+                  value={form.phone}
                   onChange={handleChange}
                   className="w-full p-3 border rounded-lg mt-1 focus:outline-none focus:ring-2 focus:ring-blue-400"
                   required
@@ -158,10 +184,10 @@ const Register = () => {
               Register
             </button>
           </form>
-           <p className="text-sm text-center text-gray-600 mt-2">
+          <p className="text-sm text-center text-gray-600 mt-2">
             You have an account?{" "}
             <a href="/login" className="text-blue-600 hover:underline">
-              Login Hear
+              Login Here
             </a>
           </p>
         </div>
