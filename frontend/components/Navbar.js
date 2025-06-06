@@ -28,6 +28,12 @@ export default function Navbar() {
             <Link href="/contact" className="text-gray-700 hover:text-blue-600 font-medium">
               Contact
             </Link>
+            <Link href="/login"className="text-gray-700 hover:text-blue-600 font-medium">
+            login
+            </Link>
+             <Link href="/register"className="text-gray-700 hover:text-blue-600 font-medium">
+            Register
+            </Link>
           </div>
 
           {/* Mobile menu button */}
