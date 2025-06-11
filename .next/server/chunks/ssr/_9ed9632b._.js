@@ -12,11 +12,55 @@ var __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$run
 ;
 function Home() {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
-        className: "text-center mt-10",
-        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("h1", {
-            className: "text-5xl font-bold text-red-600",
-            children: "Welcome to the Job Portal"
-        }, void 0, false, {
+        className: "min-h-screen flex items-center justify-center bg-gray-50 px-4",
+        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+            className: "max-w-2xl text-center",
+            children: [
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("h1", {
+                    className: "text-4xl md:text-5xl font-bold text-blue-600 mb-4",
+                    children: "Bridging Talent with Opportunity"
+                }, void 0, false, {
+                    fileName: "[project]/pages/index.js",
+                    lineNumber: 5,
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("p", {
+                    className: "text-lg md:text-xl text-gray-700 mb-8",
+                    children: "Upload your resume or post your job today – it’s fast and free!"
+                }, void 0, false, {
+                    fileName: "[project]/pages/index.js",
+                    lineNumber: 8,
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                    className: "flex flex-col sm:flex-row items-center justify-center gap-4",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("a", {
+                            href: "/student-portal",
+                            className: "px-6 py-3 bg-blue-600 text-white rounded-2xl font-medium hover:bg-blue-700 transition duration-300",
+                            children: "🎓 I'm a Student"
+                        }, void 0, false, {
+                            fileName: "[project]/pages/index.js",
+                            lineNumber: 13,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("a", {
+                            href: "/company-portal",
+                            className: "px-6 py-3 bg-green-600 text-white rounded-2xl font-medium hover:bg-green-700 transition duration-300",
+                            children: "🏢 I'm a Company"
+                        }, void 0, false, {
+                            fileName: "[project]/pages/index.js",
+                            lineNumber: 19,
+                            columnNumber: 11
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/pages/index.js",
+                    lineNumber: 12,
+                    columnNumber: 9
+                }, this)
+            ]
+        }, void 0, true, {
             fileName: "[project]/pages/index.js",
             lineNumber: 4,
             columnNumber: 7
