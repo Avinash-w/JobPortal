@@ -41,67 +41,67 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-100 to-white p-6">
-      <div className="max-w-6xl mx-auto bg-white rounded-3xl shadow-xl p-6 flex items-center justify-between mb-8">
-        <div>
-          <h2 className="text-2xl sm:text-3xl font-semibold text-gray-700">{greeting},</h2>
-          <h1 className="text-3xl sm:text-4xl font-bold text-blue-600 mt-1">
-            {user?.name || "User"}
-          </h1>
-          <p className="text-gray-500 text-sm mt-1">Welcome to your personalized dashboard</p>
-        </div>
-        <div className="shrink-0">
-          <img
-            src={user.profileImage || '/default-profile.png'}
-            alt="Profile"
-            className="w-24 h-24 rounded-full object-cover border-4 border-blue-200 shadow-lg"
-          />
-        </div>
+   <div className="min-h-screen bg-gradient-to-tr from-indigo-100 via-white to-blue-50 p-6">
+  {/* Header Section */}
+  <div className="max-w-6xl mx-auto mb-12">
+    <div className="bg-white/60 backdrop-blur-xl border border-white/40 shadow-2xl rounded-3xl p-8 flex flex-col sm:flex-row items-center justify-between">
+      <div>
+        <h2 className="text-4xl font-extrabold text-gray-900 tracking-tight">{greeting}, <span className="text-indigo-600">{user?.name || "User"}</span></h2>
+        <p className="mt-1 text-gray-500 text-base">Welcome to your modern dashboard experience</p>
       </div>
+      <img
+        src={user?.profileImage || "/default-profile.png"}
+        alt="Profile"
+        className="w-28 h-28 rounded-full border-4 border-indigo-200 shadow-lg transition-transform hover:scale-105"
+      />
+    </div>
+  </div>
+
+  {/* Vertical Tabs Layout */}
+  <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 ">
+    {/* Sidebar Navigation */}
+    <div className=" backdrop-blur-md border border-gray-200 rounded-2xl shadow-lg p-4 flex flex-col gap-2 relative">
+      {/* Active tab indicator */}
+      <div
+        className={`absolute left-0 top-0 w-1 bg-indigo-500 rounded-r-full transition-all duration-300 ${
+          activeTab === "personal" ? "mt-2" : activeTab === "education" ? "mt-[68px]" : "mt-[134px]"
+        } h-12`}
+      />
 
       {/* Tabs */}
-      <div className="max-w-6xl mx-auto bg-white rounded-xl shadow-lg p-4">
-        <div className="flex gap-4 mb-6 border-b border-gray-200 pb-2">
-          <button
-            onClick={() => setActiveTab("personal")}
-            className={`px-4 py-2 rounded-t-md font-medium ${
-              activeTab === "personal"
-                ? "bg-blue-100 text-blue-700"
-                : "text-gray-500 hover:text-blue-500"
-            }`}
-          >
-            Personal Details
-          </button>
-          <button
-            onClick={() => setActiveTab("education")}
-            className={`px-4 py-2 rounded-t-md font-medium ${
-              activeTab === "education"
-                ? "bg-blue-100 text-blue-700"
-                : "text-gray-500 hover:text-blue-500"
-            }`}
-          >
-            Education Details
-          </button>
-          <button
-            onClick={() => setActiveTab("professional")}
-            className={`px-4 py-2 rounded-t-md font-medium ${
-              activeTab === "professional"
-                ? "bg-blue-100 text-blue-700"
-                : "text-gray-500 hover:text-blue-500"
-            }`}
-          >
-            Professional Details
-          </button>
-        </div>
-
-        {/* Content based on active tab */}
-        <div>
-          {!user && <p>Loading...</p>}
-          {user && activeTab === "personal" && <PersonalDetails user={user} />}
-          {user && activeTab === "education" && <EducationDetails user={user} />}
-          {user && activeTab === "professional" && <ProfessionalDetails user={user} />}
-        </div>
-      </div>
+      {[
+        { id: "personal", label: "Personal", icon: "👤" },
+        { id: "education", label: "Education", icon: "🎓" },
+        { id: "professional", label: "Professional", icon: "💼" },
+      ].map((tab) => (
+        <button
+          key={tab.id}
+          onClick={() => setActiveTab(tab.id)}
+          className={`flex items-center gap-3 px-4 py-3 w-full text-left rounded-lg text-sm font-medium transition-all duration-300 relative z-10 ${
+            activeTab === tab.id
+              ? "bg-gradient-to-r from-indigo-500 to-blue-500 text-white shadow-md"
+              : "text-gray-600 hover:bg-indigo-100 hover:text-indigo-700"
+          }`}
+        >
+          <span className="text-xl">{tab.icon}</span>
+          {tab.label} Details
+        </button>
+      ))}
     </div>
+
+    {/* Content Area */}
+    <div className="md:col-span-3  rounded-2xl shadow-xl  p-6 transition-all">
+      {!user && <p className="text-center text-gray-400">Loading...</p>}
+      {user && activeTab === "personal" && <PersonalDetails user={user} />}
+      {user && activeTab === "education" && <EducationDetails user={user} />}
+      {user && activeTab === "professional" && <ProfessionalDetails user={user} />}
+    </div>
+  </div>
+</div>
+
+
+
+
+
   );
 }
