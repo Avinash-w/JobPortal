@@ -10,6 +10,14 @@ const mod = await __turbopack_context__.y("jwt-decode");
 __turbopack_context__.n(mod);
 __turbopack_async_result__();
 } catch(e) { __turbopack_async_result__(e); } }, true);}),
+"[externals]/react-dom [external] (react-dom, cjs)": (function(__turbopack_context__) {
+
+var { g: global, __dirname, m: module, e: exports } = __turbopack_context__;
+{
+const mod = __turbopack_context__.x("react-dom", () => require("react-dom"));
+
+module.exports = mod;
+}}),
 "[project]/components/PersonalDetails.js [ssr] (ecmascript)": ((__turbopack_context__) => {
 "use strict";
 
@@ -20,6 +28,8 @@ __turbopack_context__.s({
 });
 var __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/react/jsx-dev-runtime [external] (react/jsx-dev-runtime, cjs)");
 var __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/react [external] (react, cjs)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/image.js [ssr] (ecmascript)");
+;
 ;
 ;
 function PersonalDetails({ user, setUser }) {
@@ -142,26 +152,26 @@ function PersonalDetails({ user, setUser }) {
                 children: "Personal Details"
             }, void 0, false, {
                 fileName: "[project]/components/PersonalDetails.js",
-                lineNumber: 130,
+                lineNumber: 132,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
                 className: "mb-6 flex flex-col items-center",
-                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(Image, {
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
                     src: previewImage,
                     alt: "Profile",
-                    width: 112,
-                    height: 112,
+                    width: 80,
+                    height: 80,
                     className: "rounded-full border-4 border-indigo-200 shadow-lg object-cover",
                     unoptimized: true
                 }, void 0, false, {
                     fileName: "[project]/components/PersonalDetails.js",
-                    lineNumber: 133,
+                    lineNumber: 137,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/PersonalDetails.js",
-                lineNumber: 132,
+                lineNumber: 136,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -215,8 +225,8 @@ function PersonalDetails({ user, setUser }) {
                                 children: label
                             }, void 0, false, {
                                 fileName: "[project]/components/PersonalDetails.js",
-                                lineNumber: 160,
-                                columnNumber: 13
+                                lineNumber: 165,
+                                columnNumber: 15
                             }, this),
                             type === "select" ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("select", {
                                 name: name,
@@ -228,13 +238,13 @@ function PersonalDetails({ user, setUser }) {
                                         children: opt ? opt.charAt(0).toUpperCase() + opt.slice(1) : "Select Gender"
                                     }, opt, false, {
                                         fileName: "[project]/components/PersonalDetails.js",
-                                        lineNumber: 169,
-                                        columnNumber: 19
+                                        lineNumber: 176,
+                                        columnNumber: 21
                                     }, this))
                             }, void 0, false, {
                                 fileName: "[project]/components/PersonalDetails.js",
-                                lineNumber: 162,
-                                columnNumber: 15
+                                lineNumber: 169,
+                                columnNumber: 17
                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("input", {
                                 type: type,
                                 name: name,
@@ -245,18 +255,18 @@ function PersonalDetails({ user, setUser }) {
                                 placeholder: `Enter ${label}`
                             }, void 0, false, {
                                 fileName: "[project]/components/PersonalDetails.js",
-                                lineNumber: 175,
-                                columnNumber: 15
+                                lineNumber: 184,
+                                columnNumber: 17
                             }, this)
                         ]
                     }, name, true, {
                         fileName: "[project]/components/PersonalDetails.js",
-                        lineNumber: 159,
-                        columnNumber: 11
+                        lineNumber: 164,
+                        columnNumber: 13
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/components/PersonalDetails.js",
-                lineNumber: 143,
+                lineNumber: 147,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -267,7 +277,7 @@ function PersonalDetails({ user, setUser }) {
                         children: "Upload Profile Image"
                     }, void 0, false, {
                         fileName: "[project]/components/PersonalDetails.js",
-                        lineNumber: 190,
+                        lineNumber: 200,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -279,7 +289,7 @@ function PersonalDetails({ user, setUser }) {
                                 className: "block w-full text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-600 hover:file:bg-blue-100"
                             }, void 0, false, {
                                 fileName: "[project]/components/PersonalDetails.js",
-                                lineNumber: 192,
+                                lineNumber: 204,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("button", {
@@ -289,19 +299,19 @@ function PersonalDetails({ user, setUser }) {
                                 children: uploading ? "Uploading..." : "Upload"
                             }, void 0, false, {
                                 fileName: "[project]/components/PersonalDetails.js",
-                                lineNumber: 197,
+                                lineNumber: 209,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/PersonalDetails.js",
-                        lineNumber: 191,
+                        lineNumber: 203,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/PersonalDetails.js",
-                lineNumber: 189,
+                lineNumber: 199,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -312,18 +322,18 @@ function PersonalDetails({ user, setUser }) {
                     children: "Save Details"
                 }, void 0, false, {
                     fileName: "[project]/components/PersonalDetails.js",
-                    lineNumber: 208,
+                    lineNumber: 220,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/PersonalDetails.js",
-                lineNumber: 207,
+                lineNumber: 219,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/PersonalDetails.js",
-        lineNumber: 129,
+        lineNumber: 131,
         columnNumber: 5
     }, this);
 }
@@ -1042,14 +1052,6 @@ function ProfessionalDetails({ user }) {
     }, this);
 }
 }}),
-"[externals]/react-dom [external] (react-dom, cjs)": (function(__turbopack_context__) {
-
-var { g: global, __dirname, m: module, e: exports } = __turbopack_context__;
-{
-const mod = __turbopack_context__.x("react-dom", () => require("react-dom"));
-
-module.exports = mod;
-}}),
 "[project]/pages/dashboard.js [ssr] (ecmascript)": ((__turbopack_context__) => {
 "use strict";
 
@@ -1152,8 +1154,8 @@ function Dashboard() {
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
                             src: user?.profileImage || "/default-profile.png",
                             alt: "Profile",
-                            width: 112,
-                            height: 112,
+                            width: 100,
+                            height: 100,
                             className: "rounded-full border-4 border-indigo-200 shadow-lg transition-transform hover:scale-105 object-cover"
                         }, void 0, false, {
                             fileName: "[project]/pages/dashboard.js",
@@ -1282,4 +1284,4 @@ __turbopack_async_result__();
 
 };
 
-//# sourceMappingURL=%5Broot-of-the-server%5D__80c71f15._.js.map
+//# sourceMappingURL=%5Broot-of-the-server%5D__dd0f5381._.js.map

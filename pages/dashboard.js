@@ -55,8 +55,8 @@ export default function Dashboard() {
           <Image
             src={user?.profileImage || "/default-profile.png"}
             alt="Profile"
-            width={112}
-            height={112}
+            width={100}
+            height={100}
             className="rounded-full border-4 border-indigo-200 shadow-lg transition-transform hover:scale-105 object-cover"
           />
         </div>

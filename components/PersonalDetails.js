@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 export default function PersonalDetails({ user, setUser }) {
   const [formData, setFormData] = useState({
@@ -93,7 +94,8 @@ export default function PersonalDetails({ user, setUser }) {
 
   const handleSave = async () => {
     try {
-      const fullName = `${formData.firstName} ${formData.middleName} ${formData.lastName}`.trim();
+      const fullName =
+        `${formData.firstName} ${formData.middleName} ${formData.lastName}`.trim();
 
       const res = await fetch(`/api/user/${user._id}`, {
         method: "PUT",
@@ -127,13 +129,18 @@ export default function PersonalDetails({ user, setUser }) {
 
   return (
     <div className="bg-white p-6 rounded-xl shadow-md">
-      <h2 className="text-2xl font-bold text-gray-800 mb-4">Personal Details</h2>
+      <h2 className="text-2xl font-bold text-gray-800 mb-4">
+        Personal Details
+      </h2>
 
       <div className="mb-6 flex flex-col items-center">
-        <img
+        <Image
           src={previewImage}
           alt="Profile"
-          className="w-28 h-28 rounded-full border-4 border-indigo-200 shadow-lg"
+          width={80}
+          height={80}
+          className="rounded-full border-4 border-indigo-200 shadow-lg object-cover"
+          unoptimized // <-- required for previewImage (blob/base64)
         />
       </div>
 
@@ -152,39 +159,47 @@ export default function PersonalDetails({ user, setUser }) {
           { label: "Languages Known", name: "languages" },
           { label: "Email", name: "email", disabled: true },
           { label: "Mobile Number", name: "mobile" },
-        ].map(({ label, name, type = "text", options = [], disabled = false }) => (
-          <div key={name}>
-            <label className="block text-sm font-medium text-gray-700 mb-1">{label}</label>
-            {type === "select" ? (
-              <select
-                name={name}
-                value={formData[name]}
-                onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400"
-              >
-                {options.map((opt) => (
-                  <option key={opt} value={opt}>
-                    {opt ? opt.charAt(0).toUpperCase() + opt.slice(1) : "Select Gender"}
-                  </option>
-                ))}
-              </select>
-            ) : (
-              <input
-                type={type}
-                name={name}
-                value={formData[name]}
-                onChange={handleChange}
-                disabled={disabled}
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400"
-                placeholder={`Enter ${label}`}
-              />
-            )}
-          </div>
-        ))}
+        ].map(
+          ({ label, name, type = "text", options = [], disabled = false }) => (
+            <div key={name}>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                {label}
+              </label>
+              {type === "select" ? (
+                <select
+                  name={name}
+                  value={formData[name]}
+                  onChange={handleChange}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400"
+                >
+                  {options.map((opt) => (
+                    <option key={opt} value={opt}>
+                      {opt
+                        ? opt.charAt(0).toUpperCase() + opt.slice(1)
+                        : "Select Gender"}
+                    </option>
+                  ))}
+                </select>
+              ) : (
+                <input
+                  type={type}
+                  name={name}
+                  value={formData[name]}
+                  onChange={handleChange}
+                  disabled={disabled}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400"
+                  placeholder={`Enter ${label}`}
+                />
+              )}
+            </div>
+          )
+        )}
       </div>
 
       <div className="mt-6">
-        <label className="block text-sm font-medium text-gray-700 mb-1">Upload Profile Image</label>
+        <label className="block text-sm font-medium text-gray-700 mb-1">
+          Upload Profile Image
+        </label>
         <div className="flex items-center gap-4">
           <input
             type="file"

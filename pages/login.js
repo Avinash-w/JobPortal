@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
+import Link from 'next/link';
 
 export default function LoginPage() {
   const [loginMethod, setLoginMethod] = useState("email");
@@ -106,9 +107,7 @@ export default function LoginPage() {
 
           <p className="text-sm text-center text-gray-600">
             Don’t have an account?{' '}
-            <a href="/register" className="text-blue-600 hover:underline">
-              Register here
-            </a>
+          <Link href="/register/">Register</Link>
           </p>
         </div>
       </div>
