@@ -22,21 +22,20 @@ var __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$run
 var __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/react [external] (react, cjs)");
 ;
 ;
-function PersonalDetails({ user }) {
-    const nameParts = user?.name?.split(" ") || [];
+function PersonalDetails({ user, setUser }) {
     const [formData, setFormData] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])({
-        firstName: user?.firstName || user?.name?.split(" ")[0] || "",
-        middleName: user?.middleName || "",
-        lastName: user?.lastName || (user?.name?.split(" ").length > 2 ? user?.name?.split(" ").slice(2).join(" ") : user?.name?.split(" ")[1] || ""),
-        dob: user?.dob || "",
-        gender: user?.gender || "",
-        email: user?.email || "",
-        mobile: user?.mobile || user?.phone || "",
-        languages: user?.languages || ""
+        firstName: "",
+        middleName: "",
+        lastName: "",
+        dob: "",
+        gender: "",
+        email: "",
+        mobile: "",
+        languages: ""
     });
     const [selectedFile, setSelectedFile] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])(null);
     const [uploading, setUploading] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])(false);
-    const [previewImage, setPreviewImage] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])(user?.profileImage || "/default-profile.png");
+    const [previewImage, setPreviewImage] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])("/default-profile.png");
     (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useEffect"])(()=>{
         if (user) {
             const nameParts = user?.name?.split(" ") || [];
@@ -91,6 +90,7 @@ function PersonalDetails({ user }) {
             if (res.ok) {
                 alert("Profile image uploaded!");
                 setPreviewImage(data.user.profileImage);
+                if (setUser) setUser(data.user); // update parent state or context
             } else {
                 console.error("Upload failed:", data.message || data);
                 alert("Upload failed");
@@ -119,13 +119,13 @@ function PersonalDetails({ user }) {
                 })
             });
             const data = await res.json();
-            console.log("Save response:", data);
             if (res.ok) {
                 alert("Details updated successfully!");
-                // 🔁 Refresh from server
-                const refreshedRes = await fetch(`/api/user/${user._id}`);
-                const refreshedUser = await refreshedRes.json();
-                setUser(refreshedUser); // update context
+                if (setUser) {
+                    const refreshedRes = await fetch(`/api/user/${user._id}`);
+                    const refreshedUser = await refreshedRes.json();
+                    setUser(refreshedUser.user);
+                }
             } else {
                 alert(data.message || "Update failed");
             }
@@ -142,7 +142,7 @@ function PersonalDetails({ user }) {
                 children: "Personal Details"
             }, void 0, false, {
                 fileName: "[project]/components/PersonalDetails.js",
-                lineNumber: 131,
+                lineNumber: 130,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -153,12 +153,12 @@ function PersonalDetails({ user }) {
                     className: "w-28 h-28 rounded-full border-4 border-indigo-200 shadow-lg"
                 }, void 0, false, {
                     fileName: "[project]/components/PersonalDetails.js",
-                    lineNumber: 134,
+                    lineNumber: 133,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/PersonalDetails.js",
-                lineNumber: 133,
+                lineNumber: 132,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -212,7 +212,7 @@ function PersonalDetails({ user }) {
                                 children: label
                             }, void 0, false, {
                                 fileName: "[project]/components/PersonalDetails.js",
-                                lineNumber: 158,
+                                lineNumber: 157,
                                 columnNumber: 13
                             }, this),
                             type === "select" ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("select", {
@@ -225,12 +225,12 @@ function PersonalDetails({ user }) {
                                         children: opt ? opt.charAt(0).toUpperCase() + opt.slice(1) : "Select Gender"
                                     }, opt, false, {
                                         fileName: "[project]/components/PersonalDetails.js",
-                                        lineNumber: 167,
+                                        lineNumber: 166,
                                         columnNumber: 19
                                     }, this))
                             }, void 0, false, {
                                 fileName: "[project]/components/PersonalDetails.js",
-                                lineNumber: 160,
+                                lineNumber: 159,
                                 columnNumber: 15
                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("input", {
                                 type: type,
@@ -242,18 +242,18 @@ function PersonalDetails({ user }) {
                                 placeholder: `Enter ${label}`
                             }, void 0, false, {
                                 fileName: "[project]/components/PersonalDetails.js",
-                                lineNumber: 173,
+                                lineNumber: 172,
                                 columnNumber: 15
                             }, this)
                         ]
                     }, name, true, {
                         fileName: "[project]/components/PersonalDetails.js",
-                        lineNumber: 157,
+                        lineNumber: 156,
                         columnNumber: 11
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/components/PersonalDetails.js",
-                lineNumber: 141,
+                lineNumber: 140,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -264,7 +264,7 @@ function PersonalDetails({ user }) {
                         children: "Upload Profile Image"
                     }, void 0, false, {
                         fileName: "[project]/components/PersonalDetails.js",
-                        lineNumber: 188,
+                        lineNumber: 187,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -276,7 +276,7 @@ function PersonalDetails({ user }) {
                                 className: "block w-full text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-600 hover:file:bg-blue-100"
                             }, void 0, false, {
                                 fileName: "[project]/components/PersonalDetails.js",
-                                lineNumber: 192,
+                                lineNumber: 189,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("button", {
@@ -286,19 +286,19 @@ function PersonalDetails({ user }) {
                                 children: uploading ? "Uploading..." : "Upload"
                             }, void 0, false, {
                                 fileName: "[project]/components/PersonalDetails.js",
-                                lineNumber: 197,
+                                lineNumber: 194,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/PersonalDetails.js",
-                        lineNumber: 191,
+                        lineNumber: 188,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/PersonalDetails.js",
-                lineNumber: 187,
+                lineNumber: 186,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -309,18 +309,18 @@ function PersonalDetails({ user }) {
                     children: "Save Details"
                 }, void 0, false, {
                     fileName: "[project]/components/PersonalDetails.js",
-                    lineNumber: 208,
+                    lineNumber: 205,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/PersonalDetails.js",
-                lineNumber: 207,
+                lineNumber: 204,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/PersonalDetails.js",
-        lineNumber: 130,
+        lineNumber: 129,
         columnNumber: 5
     }, this);
 }
@@ -360,7 +360,6 @@ function EducationDetails({ user }) {
         otherCertifications: "",
         certificateFile: null
     });
-    // ✅ Fetch from DB when user loads
     (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useEffect"])(()=>{
         const fetchEducation = async ()=>{
             try {
@@ -371,7 +370,7 @@ function EducationDetails({ user }) {
                     setFormData((prev)=>({
                             ...prev,
                             ...edu,
-                            certificateFile: null // don't preload file input
+                            certificateFile: null
                         }));
                 }
             } catch (err) {
@@ -404,7 +403,7 @@ function EducationDetails({ user }) {
                 ...formData
             };
             if (formDataToSend.certificateFile) {
-                formDataToSend.certificateFile = null; // skip file for now
+                formDataToSend.certificateFile = null;
             }
             const res = await fetch(`/api/user/${user._id}`, {
                 method: "PUT",
@@ -415,7 +414,7 @@ function EducationDetails({ user }) {
                     education: formDataToSend
                 })
             });
-            const data = await res.json();
+            await res.json(); // ✅ fixed: no unused variable
             if (res.ok) {
                 alert("Education details saved!");
             } else {
@@ -677,7 +676,7 @@ function EducationDetails({ user }) {
                                 children: "Upload Certificate"
                             }, void 0, false, {
                                 fileName: "[project]/components/EducationDetails.js",
-                                lineNumber: 127,
+                                lineNumber: 132,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("input", {
@@ -687,13 +686,13 @@ function EducationDetails({ user }) {
                                 className: "block w-full text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-600 hover:file:bg-blue-100"
                             }, void 0, false, {
                                 fileName: "[project]/components/EducationDetails.js",
-                                lineNumber: 128,
+                                lineNumber: 133,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/EducationDetails.js",
-                        lineNumber: 126,
+                        lineNumber: 131,
                         columnNumber: 9
                     }, this)
                 ]
@@ -711,12 +710,12 @@ function EducationDetails({ user }) {
                     children: "Save Details"
                 }, void 0, false, {
                     fileName: "[project]/components/EducationDetails.js",
-                    lineNumber: 138,
+                    lineNumber: 143,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/EducationDetails.js",
-                lineNumber: 137,
+                lineNumber: 142,
                 columnNumber: 7
             }, this)
         ]
@@ -734,7 +733,7 @@ const Section = ({ title, children })=>/*#__PURE__*/ (0, __TURBOPACK__imported__
                 children: title
             }, void 0, false, {
                 fileName: "[project]/components/EducationDetails.js",
-                lineNumber: 153,
+                lineNumber: 158,
                 columnNumber: 5
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -742,7 +741,7 @@ const Section = ({ title, children })=>/*#__PURE__*/ (0, __TURBOPACK__imported__
                 children: children
             }, void 0, false, {
                 fileName: "[project]/components/EducationDetails.js",
-                lineNumber: 154,
+                lineNumber: 159,
                 columnNumber: 5
             }, this)
         ]
@@ -754,7 +753,7 @@ const Input = ({ name, label, value, onChange, type = "text" })=>/*#__PURE__*/ (
                 children: label
             }, void 0, false, {
                 fileName: "[project]/components/EducationDetails.js",
-                lineNumber: 160,
+                lineNumber: 165,
                 columnNumber: 5
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("input", {
@@ -766,13 +765,13 @@ const Input = ({ name, label, value, onChange, type = "text" })=>/*#__PURE__*/ (
                 placeholder: `Enter ${label}`
             }, void 0, false, {
                 fileName: "[project]/components/EducationDetails.js",
-                lineNumber: 161,
+                lineNumber: 166,
                 columnNumber: 5
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/EducationDetails.js",
-        lineNumber: 159,
+        lineNumber: 164,
         columnNumber: 3
     }, this);
 }}),
@@ -798,6 +797,31 @@ function ProfessionalDetails({ user }) {
         currentSalary: "",
         expectedSalary: ""
     });
+    // Optional: Fetch existing professional data on mount
+    (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useEffect"])(()=>{
+        const fetchDetails = async ()=>{
+            try {
+                const res = await fetch(`/api/user/${user._id}`);
+                const result = await res.json();
+                if (res.ok && result.user?.professional) {
+                    setFormData((prev)=>({
+                            ...prev,
+                            ...result.user.professional,
+                            salarySlip: null,
+                            experienceLetter: null,
+                            joiningLetter: null
+                        }));
+                }
+            } catch (err) {
+                console.error("Fetch error:", err);
+            }
+        };
+        if (user?._id) {
+            fetchDetails();
+        }
+    }, [
+        user
+    ]);
     const handleFileChange = (e)=>{
         const { name, files } = e.target;
         setFormData((prev)=>({
@@ -814,16 +838,23 @@ function ProfessionalDetails({ user }) {
     };
     const handleSave = async ()=>{
         try {
+            // Exclude file fields from JSON body
+            const jsonData = {
+                ...formData
+            };
+            delete jsonData.salarySlip;
+            delete jsonData.experienceLetter;
+            delete jsonData.joiningLetter;
             const res = await fetch(`/api/user/${user._id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    professional: formData
+                    professional: jsonData
                 })
             });
-            const data = await res.json();
+            await res.json(); // remove unused variable warning
             if (res.ok) {
                 alert("Professional details updated successfully!");
             } else {
@@ -831,6 +862,7 @@ function ProfessionalDetails({ user }) {
             }
         } catch (error) {
             console.error("Save error:", error);
+            alert("Error occurred while saving details.");
         }
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("form", {
@@ -841,7 +873,7 @@ function ProfessionalDetails({ user }) {
                 children: "Professional Information"
             }, void 0, false, {
                 fileName: "[project]/components/ProfessionalDetails.js",
-                lineNumber: 53,
+                lineNumber: 87,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -851,28 +883,30 @@ function ProfessionalDetails({ user }) {
                         type: "number",
                         name: "experienceYears",
                         placeholder: "Experience (Years)",
+                        value: formData.experienceYears,
                         className: "input-style",
                         onChange: handleChange
                     }, void 0, false, {
                         fileName: "[project]/components/ProfessionalDetails.js",
-                        lineNumber: 56,
+                        lineNumber: 90,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("input", {
                         type: "number",
                         name: "experienceMonths",
                         placeholder: "Experience (Months)",
+                        value: formData.experienceMonths,
                         className: "input-style",
                         onChange: handleChange
                     }, void 0, false, {
                         fileName: "[project]/components/ProfessionalDetails.js",
-                        lineNumber: 63,
+                        lineNumber: 98,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/ProfessionalDetails.js",
-                lineNumber: 55,
+                lineNumber: 89,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("label", {
@@ -883,7 +917,7 @@ function ProfessionalDetails({ user }) {
                         children: "Upload Salary Slip"
                     }, void 0, false, {
                         fileName: "[project]/components/ProfessionalDetails.js",
-                        lineNumber: 73,
+                        lineNumber: 109,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("input", {
@@ -893,13 +927,13 @@ function ProfessionalDetails({ user }) {
                         onChange: handleFileChange
                     }, void 0, false, {
                         fileName: "[project]/components/ProfessionalDetails.js",
-                        lineNumber: 74,
+                        lineNumber: 110,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/ProfessionalDetails.js",
-                lineNumber: 72,
+                lineNumber: 108,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("label", {
@@ -910,7 +944,7 @@ function ProfessionalDetails({ user }) {
                         children: "Upload Experience Letter"
                     }, void 0, false, {
                         fileName: "[project]/components/ProfessionalDetails.js",
-                        lineNumber: 83,
+                        lineNumber: 119,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("input", {
@@ -920,13 +954,13 @@ function ProfessionalDetails({ user }) {
                         onChange: handleFileChange
                     }, void 0, false, {
                         fileName: "[project]/components/ProfessionalDetails.js",
-                        lineNumber: 84,
+                        lineNumber: 120,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/ProfessionalDetails.js",
-                lineNumber: 82,
+                lineNumber: 118,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("label", {
@@ -937,7 +971,7 @@ function ProfessionalDetails({ user }) {
                         children: "Upload Joining Letter"
                     }, void 0, false, {
                         fileName: "[project]/components/ProfessionalDetails.js",
-                        lineNumber: 93,
+                        lineNumber: 129,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("input", {
@@ -947,35 +981,37 @@ function ProfessionalDetails({ user }) {
                         onChange: handleFileChange
                     }, void 0, false, {
                         fileName: "[project]/components/ProfessionalDetails.js",
-                        lineNumber: 94,
+                        lineNumber: 130,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/ProfessionalDetails.js",
-                lineNumber: 92,
+                lineNumber: 128,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("input", {
                 type: "number",
                 name: "currentSalary",
                 placeholder: "Current Salary (per month)",
+                value: formData.currentSalary,
                 className: "input-style",
                 onChange: handleChange
             }, void 0, false, {
                 fileName: "[project]/components/ProfessionalDetails.js",
-                lineNumber: 102,
+                lineNumber: 138,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("input", {
                 type: "number",
                 name: "expectedSalary",
                 placeholder: "Expected Salary (per month)",
+                value: formData.expectedSalary,
                 className: "input-style",
                 onChange: handleChange
             }, void 0, false, {
                 fileName: "[project]/components/ProfessionalDetails.js",
-                lineNumber: 109,
+                lineNumber: 146,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -987,18 +1023,18 @@ function ProfessionalDetails({ user }) {
                     children: "Save Details"
                 }, void 0, false, {
                     fileName: "[project]/components/ProfessionalDetails.js",
-                    lineNumber: 119,
+                    lineNumber: 156,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/ProfessionalDetails.js",
-                lineNumber: 118,
+                lineNumber: 155,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/ProfessionalDetails.js",
-        lineNumber: 52,
+        lineNumber: 86,
         columnNumber: 5
     }, this);
 }

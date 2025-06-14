@@ -1,42 +1,40 @@
 import { useState, useEffect } from "react";
 
-export default function PersonalDetails({ user }) {
-  const nameParts = user?.name?.split(" ") || [];
-
+export default function PersonalDetails({ user, setUser }) {
   const [formData, setFormData] = useState({
-   firstName: user?.firstName || user?.name?.split(" ")[0] || "",
-  middleName: user?.middleName || "",
-  lastName:
-    user?.lastName ||
-    (user?.name?.split(" ").length > 2
-      ? user?.name?.split(" ").slice(2).join(" ")
-      : user?.name?.split(" ")[1] || ""),
-  dob: user?.dob || "",
-  gender: user?.gender || "",
-  email: user?.email || "",
-  mobile: user?.mobile || user?.phone || "",
-  languages: user?.languages || "",
+    firstName: "",
+    middleName: "",
+    lastName: "",
+    dob: "",
+    gender: "",
+    email: "",
+    mobile: "",
+    languages: "",
   });
 
   const [selectedFile, setSelectedFile] = useState(null);
   const [uploading, setUploading] = useState(false);
-  const [previewImage, setPreviewImage] = useState(user?.profileImage || "/default-profile.png");
+  const [previewImage, setPreviewImage] = useState("/default-profile.png");
 
   useEffect(() => {
     if (user) {
-    const nameParts = user?.name?.split(" ") || [];
-    setFormData({
-      firstName: user?.firstName || nameParts[0] || "",
-      middleName: user?.middleName || "",
-      lastName:
-        user?.lastName ||
-        (nameParts.length > 2 ? nameParts.slice(2).join(" ") : nameParts[1] || ""),
-      dob: user?.dob || "",
-      gender: user?.gender || "",
-      email: user?.email || "",
-      mobile: user?.mobile || user?.phone || "",
-      languages: user?.languages || "",
-    });
+      const nameParts = user?.name?.split(" ") || [];
+
+      setFormData({
+        firstName: user?.firstName || nameParts[0] || "",
+        middleName: user?.middleName || "",
+        lastName:
+          user?.lastName ||
+          (nameParts.length > 2
+            ? nameParts.slice(2).join(" ")
+            : nameParts[1] || ""),
+        dob: user?.dob || "",
+        gender: user?.gender || "",
+        email: user?.email || "",
+        mobile: user?.mobile || user?.phone || "",
+        languages: user?.languages || "",
+      });
+
       setPreviewImage(user?.profileImage || "/default-profile.png");
     }
   }, [user]);
@@ -80,6 +78,7 @@ export default function PersonalDetails({ user }) {
       if (res.ok) {
         alert("Profile image uploaded!");
         setPreviewImage(data.user.profileImage);
+        if (setUser) setUser(data.user); // update parent state or context
       } else {
         console.error("Upload failed:", data.message || data);
         alert("Upload failed");
@@ -95,28 +94,28 @@ export default function PersonalDetails({ user }) {
   const handleSave = async () => {
     try {
       const fullName = `${formData.firstName} ${formData.middleName} ${formData.lastName}`.trim();
+
       const res = await fetch(`/api/user/${user._id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           personal: {
             ...formData,
-             name: fullName,
+            name: fullName,
             phone: formData.mobile,
           },
         }),
       });
 
       const data = await res.json();
-      console.log("Save response:", data);
 
       if (res.ok) {
         alert("Details updated successfully!");
-
-        // 🔁 Refresh from server
-        const refreshedRes = await fetch(`/api/user/${user._id}`);
-        const refreshedUser = await refreshedRes.json();
-        setUser(refreshedUser); // update context
+        if (setUser) {
+          const refreshedRes = await fetch(`/api/user/${user._id}`);
+          const refreshedUser = await refreshedRes.json();
+          setUser(refreshedUser.user);
+        }
       } else {
         alert(data.message || "Update failed");
       }
@@ -185,9 +184,7 @@ export default function PersonalDetails({ user }) {
       </div>
 
       <div className="mt-6">
-        <label className="block text-sm font-medium text-gray-700 mb-1">
-          Upload Profile Image
-        </label>
+        <label className="block text-sm font-medium text-gray-700 mb-1">Upload Profile Image</label>
         <div className="flex items-center gap-4">
           <input
             type="file"

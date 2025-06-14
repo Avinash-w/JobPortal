@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function ProfessionalDetails({ user }) {
   const [formData, setFormData] = useState({
@@ -10,6 +10,32 @@ export default function ProfessionalDetails({ user }) {
     currentSalary: "",
     expectedSalary: "",
   });
+
+  // Optional: Fetch existing professional data on mount
+  useEffect(() => {
+    const fetchDetails = async () => {
+      try {
+        const res = await fetch(`/api/user/${user._id}`);
+        const result = await res.json();
+
+        if (res.ok && result.user?.professional) {
+          setFormData((prev) => ({
+            ...prev,
+            ...result.user.professional,
+            salarySlip: null,
+            experienceLetter: null,
+            joiningLetter: null,
+          }));
+        }
+      } catch (err) {
+        console.error("Fetch error:", err);
+      }
+    };
+
+    if (user?._id) {
+      fetchDetails();
+    }
+  }, [user]);
 
   const handleFileChange = (e) => {
     const { name, files } = e.target;
@@ -29,15 +55,22 @@ export default function ProfessionalDetails({ user }) {
 
   const handleSave = async () => {
     try {
+      // Exclude file fields from JSON body
+      const jsonData = { ...formData };
+      delete jsonData.salarySlip;
+      delete jsonData.experienceLetter;
+      delete jsonData.joiningLetter;
+
       const res = await fetch(`/api/user/${user._id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ professional: formData }),
+        body: JSON.stringify({ professional: jsonData }),
       });
 
-      const data = await res.json();
+      await res.json(); // remove unused variable warning
+
       if (res.ok) {
         alert("Professional details updated successfully!");
       } else {
@@ -45,6 +78,7 @@ export default function ProfessionalDetails({ user }) {
       }
     } catch (error) {
       console.error("Save error:", error);
+      alert("Error occurred while saving details.");
     }
   };
 
@@ -57,6 +91,7 @@ export default function ProfessionalDetails({ user }) {
           type="number"
           name="experienceYears"
           placeholder="Experience (Years)"
+          value={formData.experienceYears}
           className="input-style"
           onChange={handleChange}
         />
@@ -64,6 +99,7 @@ export default function ProfessionalDetails({ user }) {
           type="number"
           name="experienceMonths"
           placeholder="Experience (Months)"
+          value={formData.experienceMonths}
           className="input-style"
           onChange={handleChange}
         />
@@ -103,6 +139,7 @@ export default function ProfessionalDetails({ user }) {
         type="number"
         name="currentSalary"
         placeholder="Current Salary (per month)"
+        value={formData.currentSalary}
         className="input-style"
         onChange={handleChange}
       />
@@ -110,11 +147,11 @@ export default function ProfessionalDetails({ user }) {
         type="number"
         name="expectedSalary"
         placeholder="Expected Salary (per month)"
+        value={formData.expectedSalary}
         className="input-style"
         onChange={handleChange}
       />
 
-      {/* Save Button */}
       <div className="text-right mt-6">
         <button
           type="button"

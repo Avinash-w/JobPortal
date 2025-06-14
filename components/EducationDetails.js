@@ -28,7 +28,6 @@ export default function EducationDetails({ user }) {
     certificateFile: null,
   });
 
-  // ✅ Fetch from DB when user loads
   useEffect(() => {
     const fetchEducation = async () => {
       try {
@@ -37,10 +36,10 @@ export default function EducationDetails({ user }) {
 
         if (res.ok && data?.user?.education) {
           const edu = data.user.education;
-          setFormData(prev => ({
+          setFormData((prev) => ({
             ...prev,
             ...edu,
-            certificateFile: null // don't preload file input
+            certificateFile: null,
           }));
         }
       } catch (err) {
@@ -66,7 +65,7 @@ export default function EducationDetails({ user }) {
     try {
       const formDataToSend = { ...formData };
       if (formDataToSend.certificateFile) {
-        formDataToSend.certificateFile = null; // skip file for now
+        formDataToSend.certificateFile = null;
       }
 
       const res = await fetch(`/api/user/${user._id}`, {
@@ -75,7 +74,8 @@ export default function EducationDetails({ user }) {
         body: JSON.stringify({ education: formDataToSend }),
       });
 
-      const data = await res.json();
+      await res.json(); // ✅ fixed: no unused variable
+
       if (res.ok) {
         alert("Education details saved!");
       } else {
@@ -122,7 +122,12 @@ export default function EducationDetails({ user }) {
       </Section>
 
       <Section title="Other Certifications">
-        <Input name="otherCertifications" label="Certification Details" value={formData.otherCertifications} onChange={handleChange} />
+        <Input
+          name="otherCertifications"
+          label="Certification Details"
+          value={formData.otherCertifications}
+          onChange={handleChange}
+        />
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">Upload Certificate</label>
           <input
