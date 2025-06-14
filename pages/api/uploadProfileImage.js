@@ -1,7 +1,6 @@
-
 import multer from 'multer';
 import fs from 'fs';
-import path from 'path';
+// ✅ Removed unused 'path' import
 import dbConnect from '../../lib/db';
 import User from '../../models/User';
 
@@ -67,4 +66,3 @@ export default async function handler(req, res) {
     res.status(500).json({ error: 'Failed to update user image' });
   }
 }
-
